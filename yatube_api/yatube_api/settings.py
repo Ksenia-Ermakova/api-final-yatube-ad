@@ -109,18 +109,14 @@ STATICFILES_DIRS = ((BASE_DIR / 'static/'),)
 
 # Настройки REST Framework
 REST_FRAMEWORK = {
-    # Классы разрешений по умолчанию
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
-    # Классы аутентификации
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',  # JWT аутентификация
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-    # Пагинация - КОММЕНТИРУЕМ, чтобы группы и подписки возвращали список
-    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    # 'PAGE_SIZE': 10,
-    # Фильтрация
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.SearchFilter',
