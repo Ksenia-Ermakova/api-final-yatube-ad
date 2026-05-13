@@ -16,13 +16,12 @@ class Post(models.Model):
     # Текст поста. TextField - для длинного текста.
     text = models.TextField()
 
-    # Дата публикации. auto_now_add=True автоматически ставит текущую дату при создании
-    # 'Дата публикации' - это человеко-читаемое название в админке
+    # Дата публикации. auto_now_add=True автоматич ставит текущ дату
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
 
-    # Автор поста. ForeignKey - связь "один ко многим" (один пользователь - много постов)
-    # on_delete=models.CASCADE - если пользователя удалят, удалятся и все его посты
-    # related_name='posts' - позволяет получить все посты пользователя: user.posts.all()
+    # Автор поста. ForeignKey - связь "один ко многим" (один польз-много пост)
+    # on_delete=models.CASCADE - если пользователя удалят, удалятся его посты
+    # related_name='posts' -получить все посты пользова-ля: user.posts.all()
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='posts'
     )
@@ -38,7 +37,11 @@ class Post(models.Model):
     # on_delete=models.SET_NULL - если группу удалят, поле станет NULL
     # null=True, blank=True - поле необязательное
     group = models.ForeignKey(
-        'Group', on_delete=models.SET_NULL, null=True, blank=True, related_name='posts'
+        'Group',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='posts'
     )
 
     class Meta:
@@ -46,7 +49,7 @@ class Post(models.Model):
         Meta - внутренний класс для настроек модели.
         Здесь мы указываем сортировку по умолчанию.
         """
-        # ordering - сортировка. Минус означает "по убыванию" (от новых к старым)
+        # ordering - сортировка. Минус= "по убыванию" (от новых к старым)
         # Без этого пагинация в API работать не будет!
         ordering = ('-pub_date',)
 
@@ -102,8 +105,8 @@ class Follow(models.Model):
     # Кто подписывается. related_name='follower' - все подписки пользователя
     user = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,           # При удалении пользователя удаляем его подписки
-        related_name='follower'             # user.follower.all() - на кого подписан user
+        on_delete=models.CASCADE,  # При удалении пользователя удаляем его подписки
+        related_name='follower'   # user.follower.all() - на кого подписан user
     )
 
     # На кого подписываются
@@ -111,7 +114,7 @@ class Follow(models.Model):
         User,
         # При удалении пользователя удаляем подписки на него
         on_delete=models.CASCADE,
-        related_name='following'            # user.following.all() - кто подписан на user
+        related_name='following'  # user.following.all() - кто подписан на user
     )
 
     class Meta:

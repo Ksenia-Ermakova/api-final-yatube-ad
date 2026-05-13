@@ -1,6 +1,6 @@
 # Импортируем роутер из DRF
 from .views import CommentViewSet
-from django.urls import re_path, include
+from django.urls import re_path, include, path
 from rest_framework.routers import DefaultRouter
 
 # Импортируем наши ViewSet'ы
@@ -17,10 +17,6 @@ router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='post')
 router.register(r'groups', GroupViewSet, basename='group')
 router.register(r'follow', FollowViewSet, basename='follow')
-
-# Для комментариев используем кастомный маршрут (через вложенный роутер)
-# В DRF есть специальные инструменты, но проще добавить вручную в urlpatterns
-# Вложенный URL: /posts/{post_id}/comments/
 
 # URLs для комментариев будем обрабатывать отдельно
 

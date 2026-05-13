@@ -11,10 +11,12 @@ from rest_framework.filters import SearchFilter
 from posts.models import Post, Comment, Group, Follow
 
 # Импортируем сериализаторы
-from .serializers import PostSerializer, CommentSerializer, GroupSerializer, FollowSerializer
+from .serializers import PostSerializer, CommentSerializer, \
+    GroupSerializer, FollowSerializer
 
 # Импортируем разрешения
-from .permissions import IsAuthorOrReadOnly, IsAuthenticatedForFollow, IsAuthenticatedOrReadOnly
+from .permissions import IsAuthorOrReadOnly, IsAuthenticatedForFollow, \
+    IsAuthenticatedOrReadOnly
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -87,7 +89,8 @@ class FollowViewSet(
 ):
     """
     Вьюсет для подписок.
-    Только два метода: GET /follow/ (список подписок) и POST /follow/ (создать подписку).
+    Только два метода: GET /follow/ (список подписок) 
+    и POST /follow/ (создать подписку).
     """
 
     serializer_class = FollowSerializer

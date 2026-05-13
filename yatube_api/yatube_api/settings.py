@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import timedelta
 
 # Базовая директория проекта
 BASE_DIR = Path(__file__).resolve().parent.parent
