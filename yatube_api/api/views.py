@@ -22,12 +22,13 @@ from .permissions import IsAuthorOrReadOnly, IsAuthenticatedForFollow, \
 
 
 class ConditionalLimitOffsetPagination(LimitOffsetPagination):
-    """Пагинация: без параметров — список, с параметрами — словарь с пагинацией"""
+    """Пагинация:без параметров—список, с парам—словарь с пагинацией"""
     default_limit = 10
     max_limit = 100
 
     def get_paginated_response(self, data):
-        if not self.request.query_params.get('limit') and not self.request.query_params.get('offset'):
+        if not self.request.query_params.get('limit') \
+                and not self.request.query_params.get('offset'):
             return Response(data)
         return super().get_paginated_response(data)
 
