@@ -35,6 +35,7 @@ urlpatterns = [
 
     re_path(r'^posts/(?P<post_id>\d+)/comments/(?P<pk>\d+)/$',
             CommentViewSet.as_view({'get': 'retrieve', 'put': 'update',
-                                    'patch': 'partial_update', 'delete': 'destroy'}),
+                                    'patch': 'partial_update',
+                                    'delete': 'destroy'}),
             name='comment-detail'),
 ]

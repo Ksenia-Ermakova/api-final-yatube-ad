@@ -106,7 +106,7 @@ class Follow(models.Model):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,  # При удалении пользо-ля удаляем его подписки
-        related_name='follower'   # user.follower.all() - на кого подписан user
+        related_name='follower'  # user.follower.all() - на кого подписан user
     )
 
     # На кого подписываются

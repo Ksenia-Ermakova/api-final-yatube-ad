@@ -18,7 +18,8 @@ urlpatterns = [
     path('api/v1/', include('api.urls')),
 
     # Документация Redoc
-    path('redoc/', TemplateView.as_view(template_name='redoc.html'), name='redoc'),
+    path('redoc/', TemplateView.as_view(template_name='redoc.html'),
+         name='redoc'),
 
     # JWT эндпоинты (для получения и обновления токенов)
     # POST /api/v1/jwt/create/ - получить токен (отправить username и password)
