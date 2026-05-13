@@ -1,0 +1,28 @@
+# Виртуальное окружение (САМОЕ ВАЖНОЕ!)
+venv/
+yatube_api/venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# База данных
+*.sqlite3
+db.sqlite3
+
+# Переменные окружения
+.env
+
+# Кеши и тесты
+.mypy_cache/
+.pytest_cache/
+*.log
+
+# Редакторы
+.DS_Store
+.vscode/
+.idea/
