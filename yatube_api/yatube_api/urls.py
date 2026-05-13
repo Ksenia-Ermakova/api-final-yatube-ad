@@ -26,8 +26,10 @@ urlpatterns = [
     # POST /api/v1/jwt/verify/ - проверить токен (отправить access токен)
     path('api/v1/jwt/create/', TokenObtainPairView.as_view(),
          name='token_obtain_pair'),
-    path('api/v1/jwt/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/v1/jwt/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/v1/jwt/refresh/', TokenRefreshView.as_view(),
+         name='token_refresh'),
+    path('api/v1/jwt/verify/', TokenVerifyView.as_view(),
+         name='token_verify'),
 
     # Если используешь Djoser (раскомментировать после установки):
     # path('api/v1/auth/', include('djoser.urls')),
