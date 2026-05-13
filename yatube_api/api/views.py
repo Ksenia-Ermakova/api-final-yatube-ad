@@ -6,6 +6,8 @@
 # Импортируем классы из DRF
 from rest_framework import viewsets, mixins
 from rest_framework.filters import SearchFilter
+from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.response import Response
 
 # Импортируем модели
 from posts.models import Post, Comment, Group, Follow
@@ -17,6 +19,17 @@ from .serializers import PostSerializer, CommentSerializer, \
 # Импортируем разрешения
 from .permissions import IsAuthorOrReadOnly, IsAuthenticatedForFollow, \
     IsAuthenticatedOrReadOnly
+
+
+class ConditionalLimitOffsetPagination(LimitOffsetPagination):
+    """Пагинация: без параметров — список, с параметрами — словарь с пагинацией"""
+    default_limit = 10
+    max_limit = 100
+
+    def get_paginated_response(self, data):
+        if not self.request.query_params.get('limit') and not self.request.query_params.get('offset'):
+            return Response(data)
+        return super().get_paginated_response(data)
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -33,6 +46,8 @@ class PostViewSet(viewsets.ModelViewSet):
 
     # Какие разрешения применять
     permission_classes = (IsAuthorOrReadOnly,)
+
+    pagination_class = ConditionalLimitOffsetPagination
 
     def perform_create(self, serializer):
         """
